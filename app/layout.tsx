@@ -17,7 +17,7 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                 <main className="flex flex-col items-center p-24">
                     <span className="text-3xl">Felipe Parra Castro</span>
                     { children }
-                    <span className="text-2xl mt-5">Próximamente...</span>
+                    <span className="text-2xl mt-5">Muy pronto...</span>
                 </main>
             </body>
         </html>
