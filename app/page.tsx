@@ -1,6 +1,8 @@
 const HomePage = () => {
     return (
-            <span className="text-5xl">Página en construcción...</span>
+        <>
+            <span className="text-5xl">Página en construcción</span>
+        </>
     );
 }
  
