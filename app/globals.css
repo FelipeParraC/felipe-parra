@@ -1,33 +1,152 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
+/* Single theme (dark). If later you want light mode, re-add a .dark block with overrides */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: rgba(3, 8, 15, 1);
+  --foreground: rgba(238, 238, 238, 1);
+
+  --card: rgba(7, 14, 22, 1);
+  --card-foreground: rgba(238, 238, 238, 1);
+
+  --popover: rgba(7, 14, 22, 1);
+  --popover-foreground: rgba(238, 238, 238, 1);
+
+  --primary: rgba(15, 116, 197, 1);
+  --primary-foreground: rgba(248, 248, 248, 1);
+
+  --secondary: rgba(20, 27, 36, 1);
+  --secondary-foreground: rgba(238, 238, 238, 1);
+
+  --muted: rgba(20, 27, 36, 1);
+  --muted-foreground: rgba(143, 143, 143, 1);
+
+  --accent: rgba(15, 116, 197, 1);
+  --accent-foreground: rgba(248, 248, 248, 1);
+
+  --destructive: rgba(231, 0, 11, 1);
+  --destructive-foreground: rgba(248, 248, 248, 1);
+
+  --border: rgba(33, 42, 51, 1);
+  --input: rgba(20, 27, 36, 1);
+  --ring: rgba(15, 116, 197, 1);
+
+  --chart-1: rgba(15, 116, 197, 1);
+  --chart-2: rgba(0, 149, 156, 1);
+  --chart-3: rgba(0, 112, 138, 1);
+  --chart-4: rgba(56, 163, 145, 1);
+  --chart-5: rgba(113, 174, 141, 1);
+
+  --radius: 0.5rem;
+
+  --sidebar: rgba(1, 5, 11, 1);
+  --sidebar-foreground: rgba(238, 238, 238, 1);
+  --sidebar-primary: rgba(15, 116, 197, 1);
+  --sidebar-primary-foreground: rgba(248, 248, 248, 1);
+  --sidebar-accent: rgba(20, 27, 36, 1);
+  --sidebar-accent-foreground: rgba(238, 238, 238, 1);
+  --sidebar-border: rgba(33, 42, 51, 1);
+  --sidebar-ring: rgba(15, 116, 197, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Custom animations for portfolio */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@keyframes blink {
+  0%, 50% { border-color: transparent; }
+  51%, 100% { border-color: var(--primary); }
 }
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
