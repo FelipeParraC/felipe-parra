@@ -85,7 +85,7 @@ ${message}
           {/* Contact Info */}
           <div>
             <h3 className="text-2xl font-bold text-foreground mb-6">Let's talk about everything!</h3>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
+            <p className="text-muted-foreground mb-8 leading-relaxed text-justify">
               Don't like forms? Send me an email or reach out through any of my social channels. I'm always open to
               discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>

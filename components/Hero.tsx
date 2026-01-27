@@ -31,10 +31,15 @@ export function Hero() {
           {heroDescription}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-fade-in animation-delay-500">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg group">
-            <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
-            Download CV
-          </Button>
+          <a
+            href="/pdfs/cv/cv.pdf"
+            download="Felipe_Parra_CV.pdf"
+          >
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg group">
+              <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Download CV
+            </Button>
+          </a>
           <Button
             variant="outline"
             size="lg"

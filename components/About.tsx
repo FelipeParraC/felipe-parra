@@ -30,7 +30,7 @@ export function About() {
           </div>
 
           {/* Content */}
-          <div className="space-y-6">
+          <div className="space-y-6 text-justify">
             {aboutDescription.map((paragraph, index) => (
               <p key={index} className="text-lg text-muted-foreground leading-relaxed">
                 {paragraph}
