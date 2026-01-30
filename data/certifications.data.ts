@@ -2,25 +2,11 @@ import type { Certification } from '@/interfaces/types'
 
 export const certifications: Certification[] = [
   {
-    name: 'Scrum Master',
+    name: 'Scrum Master Professional Certification (SMPC)',
     institution: 'Certiprof',
     date: '2025',
     image: '/images/certifications/scrum-master.png',
-    url: '/pdfs/certifications/scrum-master.pdf',
-  },
-  {
-    name: 'AWS Certified AI Practitioner',
-    institution: 'AWS',
-    date: '2025',
-    image: '/images/certifications/aws-ai.png',
-    url: 'https://www.credly.com/badges/40815681-63f1-4e7b-ac57-a0ef07c3ccbe/public_url',
-  },
-  {
-    name: 'AWS Certified Cloud Practitioner',
-    institution: 'AWS',
-    date: '2025',
-    image: '/images/certifications/aws-cloud.png',
-    url: 'https://www.credly.com/badges/e7c44f4d-6665-4ad6-a370-8b94211f8273/public_url',
+    url: 'https://www.credly.com/badges/158ad168-ae4d-434c-b3d5-6acf3487148f/public_url',
   },
   {
     name: 'NextJS: El framework de React para producción',

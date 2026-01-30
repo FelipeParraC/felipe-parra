@@ -1,4 +1,5 @@
 export * from "./about.data"
+export * from "./awsCertifications.data"
 export * from "./certifications.data"
 export * from "./contact.data"
 export * from "./experience.data"

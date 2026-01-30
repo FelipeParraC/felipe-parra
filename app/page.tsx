@@ -1,4 +1,5 @@
 import { About } from '@/components/About';
+import { AwsCertifications } from '@/components/AwsCertifications';
 import { Certifications } from '@/components/Certifications';
 import { Contact } from '@/components/Contact';
 import { Experience } from '@/components/Experience';
@@ -19,7 +20,10 @@ export default function Home() {
         <Studies />
         <Experience />
         <Skills />
-        <Certifications />
+        <section id="certifications">
+          <AwsCertifications />
+          <Certifications />
+        </section>
         <Portfolio />
         <Contact />
       </main>

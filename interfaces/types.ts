@@ -44,6 +44,19 @@ export interface Certification {
   url?: string
 }
 
+export type AwsCertificationLevel =
+  | 'foundational'
+  | 'associate'
+  | 'professional'
+  | 'specialty'
+
+export interface AwsCertification {
+  name: string
+  image: string
+  url: string
+  level: AwsCertificationLevel
+}
+
 export interface Project {
   title: string
   description: string
