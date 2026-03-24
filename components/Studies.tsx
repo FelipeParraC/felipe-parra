@@ -1,5 +1,3 @@
-"use client"
-
 import { education } from '@/data'
 import { SectionTitle } from '@/elements'
 import { GraduationCap } from "lucide-react"
@@ -20,7 +18,7 @@ export function Studies() {
           <div className="space-y-8">
             {education.map((item, index) => (
               <div
-                key={index}
+                key={`${item.institution}-${item.degree}`}
                 className={`relative flex flex-col md:flex-row gap-4 md:gap-8 ${
                   index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}

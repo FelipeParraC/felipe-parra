@@ -1,5 +1,3 @@
-"use client"
-
 import { projects } from '@/data'
 import { ProjectCard, SectionTitle } from '@/elements'
 
@@ -13,7 +11,7 @@ export function Portfolio() {
 
         <div className="space-y-8">
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} reverse={index % 2 === 1} />
+            <ProjectCard key={project.title} project={project} reverse={index % 2 === 1} />
           ))}
         </div>
       </div>

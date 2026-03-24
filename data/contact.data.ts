@@ -7,7 +7,7 @@ export interface ContactInfo {
   href: string
 }
 
-export const contactEmail = "felipeparra20@email.com"
+export const contactEmail = "felipeparra20@gmail.com"
 export const contactPhone = "+57 (305) 857-6656"
 export const contactPhoneHref = "+573058576656"
 export const contactWhatsappHref = "https://wa.me/573058576656"

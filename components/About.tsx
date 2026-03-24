@@ -1,7 +1,5 @@
-"use client"
-
 import Image from "next/image"
-import { Mail, Phone, MapPin, Briefcase, CheckCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Briefcase } from "lucide-react"
 import { SectionTitle, TextWithIcon } from '@/elements'
 import { aboutDescription, aboutImage, personalInfo } from '@/data'
 
@@ -31,8 +29,8 @@ export function About() {
 
           {/* Content */}
           <div className="space-y-6 text-justify">
-            {aboutDescription.map((paragraph, index) => (
-              <p key={index} className="text-lg text-muted-foreground leading-relaxed">
+            {aboutDescription.map((paragraph) => (
+              <p key={paragraph} className="text-lg text-muted-foreground leading-relaxed">
                 {paragraph}
               </p>
             ))}

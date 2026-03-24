@@ -7,7 +7,7 @@ export const experiences: Experience[] = [
     startDate: "2024",
     endDate: "Present",
     description:
-      "Started my professional journey building web applications and learning best practices. Contributed to both frontend and backend development.",
+      "Working on data-focused solutions that combine analysis, automation, and software development. The role involves translating business needs into reliable technical workflows and contributing with Python, TypeScript, and AWS-based tools.",
     technologies: ["AWS Cloud", "Python", "TypeScript"],
   },
 ]

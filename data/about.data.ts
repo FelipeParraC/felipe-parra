@@ -5,13 +5,13 @@ export const personalInfo: PersonalInfo = {
   email: "felipeparra20@gmail.com",
   phone: "+57 (305) 857-6656",
   location: "Bogotá D.C., Colombia",
-  role: "Mathematician",
+  role: "Mathematician and Data Analyst Engineer",
 }
 
 export const aboutImage = "/images/about/about.jpg"
 
 export const aboutDescription = [
-  "I'm a passionate Mathematician with experience in building mathematical models and solving complex problems. I specialize in creating user-centered designs and implementing efficient, scalable code. My approach combines technical expertise with a keen eye for aesthetics, ensuring that every project I work on is both functional and visually appealing.",
-  "I thrive in collaborative environments and enjoy tackling complex problems that require creative thinking. Whether it's developing a new feature, optimizing performance, or designing intuitive interfaces, I bring dedication and enthusiasm to every task.",
+  "I am a mathematician with a strong interest in software engineering, cloud technologies, and applied problem solving. I enjoy turning abstract ideas into practical products with clear interfaces and maintainable code.",
+  "My background combines analytical thinking with hands-on development in Python, TypeScript, and AWS. I care about building solutions that are useful, understandable, and ready to evolve as requirements change.",
 ]
 

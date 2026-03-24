@@ -5,4 +5,4 @@ export const heroGreetings = ['Hola, soy', 'Hi, I\'m', 'Ciao, sono', 'Olá, sou'
 export const heroWelcome = 'Welcome to my Portfolio'
 export const heroName = 'Felipe Parra'
 export const heroDescription =
-  'Passionate about creating elegant solutions and building exceptional digital experiences that combine beautiful design with clean, efficient code.'
+  'Mathematician and software engineer focused on building reliable products, practical cloud solutions, and clean user experiences.'

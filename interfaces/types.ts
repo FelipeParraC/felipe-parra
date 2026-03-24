@@ -13,6 +13,7 @@ export interface SocialLink {
 export interface Experience {
   role: string
   company: string
+  companyUrl?: string
   startDate: string
   endDate: string
   description: string

@@ -2,7 +2,8 @@
 
 import type React from "react"
 
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Send } from "lucide-react"
+import { useState } from "react"
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Send, CheckCircle2, AlertCircle } from "lucide-react"
 import { contactEmail, contactLocation, contactPhone, contactPhoneHref, contactWhatsappHref, socialLinks } from '@/data'
 import { ContactCard, SectionTitle, SocialIcons } from '@/elements'
 import { Button, Input, Textarea } from './ui'
@@ -26,7 +27,6 @@ const contactInfo = [
     icon: <MapPin className="w-6 h-6" />,
     label: "Location",
     value: contactLocation,
-    href: "#",
   },
 ]
 
@@ -48,15 +48,46 @@ const socialLinksWithIcons = socialLinks
   }))
 
 export function Contact() {
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [status, setStatus] = useState<{
+    type: "idle" | "success" | "error"
+    message: string
+  }>({
+    type: "idle",
+    message: "",
+  })
+
+  function validateForm(name: string, email: string, message: string) {
+    const nextErrors = {
+      name: name.trim() ? "" : "Please enter your name.",
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ? "" : "Please enter a valid email address.",
+      message: message.trim().length >= 10 ? "" : "Please enter at least 10 characters.",
+    }
+
+    setErrors(nextErrors)
+    return !Object.values(nextErrors).some(Boolean)
+  }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault()
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget)
 
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const message = formData.get("message");
+    const name = String(formData.get("name") ?? "")
+    const email = String(formData.get("email") ?? "")
+    const message = String(formData.get("message") ?? "")
+
+    if (!validateForm(name, email, message)) {
+      setStatus({
+        type: "error",
+        message: "Please review the highlighted fields before continuing.",
+      })
+      return
+    }
 
     const whatsappMessage = `
 ¡Hola, Pipe!
@@ -67,13 +98,18 @@ Mi correo es ${email}.
 
 Quería comentarte lo siguiente:
 ${message}
-`.trim();
+`.trim()
 
     const url = `${ contactWhatsappHref }?text=${encodeURIComponent(
       whatsappMessage
-    )}`;
+    )}`
 
-    window.open(url, "_blank");
+    setStatus({
+      type: "success",
+      message: "Opening WhatsApp with your message.",
+    })
+
+    window.open(url, "_blank", "noopener,noreferrer")
   }
 
   return (
@@ -84,15 +120,15 @@ ${message}
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-6">Let's talk about everything!</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-6">Let&apos;s talk about everything!</h3>
             <p className="text-muted-foreground mb-8 leading-relaxed text-justify">
-              Don't like forms? Send me an email or reach out through any of my social channels. I'm always open to
-              discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Don&apos;t like forms? Send me an email or reach out through any of my social channels. I&apos;m always
+              open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             </p>
 
             <div className="space-y-4 mb-8">
-              {contactInfo.map((info, index) => (
-                <ContactCard key={index} icon={info.icon} label={info.label} value={info.value} href={info.href} />
+              {contactInfo.map((info) => (
+                <ContactCard key={info.label} icon={info.icon} label={info.label} value={info.value} href={info.href} />
               ))}
             </div>
 
@@ -105,13 +141,40 @@ ${message}
           {/* Contact Form */}
           <div className="bg-card p-6 md:p-8 rounded-xl border border-border">
             <h3 className="text-xl font-bold text-foreground mb-6">Send me a message</h3>
+            {status.type !== "idle" && (
+              <div
+                className={`mb-5 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm ${
+                  status.type === "success"
+                    ? "border-primary/30 bg-primary/10 text-foreground"
+                    : "border-destructive/40 bg-destructive/10 text-foreground"
+                }`}
+                role="status"
+                aria-live="polite"
+              >
+                {status.type === "success" ? (
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                ) : (
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-destructive" />
+                )}
+                <span>{status.message}</span>
+              </div>
+            )}
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                     Your Name
                   </label>
-                  <Input id="name" name="name" required placeholder="John Doe" className="bg-secondary border-border focus:border-primary" />
+                  <Input
+                    id="name"
+                    name="name"
+                    required
+                    placeholder="John Doe"
+                    className="bg-secondary border-border focus:border-primary"
+                    aria-invalid={Boolean(errors.name)}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                  />
+                  {errors.name && <p id="name-error" className="mt-2 text-sm text-destructive">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
@@ -124,7 +187,10 @@ ${message}
                     type="email"
                     placeholder="john@example.com"
                     className="bg-secondary border-border focus:border-primary"
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && <p id="email-error" className="mt-2 text-sm text-destructive">{errors.email}</p>}
                 </div>
               </div>
               <div>
@@ -138,7 +204,10 @@ ${message}
                   rows={5}
                   placeholder="Write your message here..."
                   className="bg-secondary border-border focus:border-primary resize-none h-60"
+                  aria-invalid={Boolean(errors.message)}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                 />
+                {errors.message && <p id="message-error" className="mt-2 text-sm text-destructive">{errors.message}</p>}
               </div>
               <Button type="submit" className="w-full" size="lg">
                 <Send className="w-4 h-4 mr-2" />

@@ -33,9 +33,9 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
         </h3>
         <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.technologies.map((tech, techIndex) => (
+          {project.technologies.map((tech) => (
             <span
-              key={techIndex}
+              key={tech}
               className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full border border-primary/20"
             >
               {tech}

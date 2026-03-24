@@ -1,5 +1,3 @@
-"use client"
-
 import { certifications } from '@/data'
 import { CertificationCard, SectionTitle } from '@/elements'
 
@@ -12,8 +10,8 @@ export function Certifications() {
         <SectionTitle preText="Other" highlightText="Certifications" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {certifications.map((cert, index) => (
-            <CertificationCard key={index} certification={cert} />
+          {certifications.map((cert) => (
+            <CertificationCard key={cert.name} certification={cert} />
           ))}
         </div>
       </div>

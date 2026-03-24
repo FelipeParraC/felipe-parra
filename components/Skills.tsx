@@ -1,5 +1,3 @@
-"use client"
-
 import { languages, skillCategories } from '@/data'
 import { LanguageCard, ProgressBar, SectionTitle } from '@/elements'
 import { Globe } from "lucide-react"
@@ -13,15 +11,15 @@ export function Skills() {
         <SectionTitle preText="My" highlightText="Skills" />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+          {skillCategories.map((category) => (
             <div
-              key={categoryIndex}
+              key={category.title}
               className="bg-card p-6 rounded-xl border border-border hover:border-primary transition-all duration-300"
             >
               <h3 className="text-xl font-bold text-foreground mb-6 text-center">{category.title}</h3>
               <div className="space-y-5">
-                {category.skills.map((skill, skillIndex) => (
-                  <ProgressBar key={skillIndex} name={skill.name} level={skill.level} />
+                {category.skills.map((skill) => (
+                  <ProgressBar key={skill.name} name={skill.name} level={skill.level} />
                 ))}
               </div>
             </div>
@@ -33,8 +31,8 @@ export function Skills() {
               Languages
             </h3>
             <div className="space-y-3">
-              {languages.map((language, index) => (
-                <LanguageCard key={index} language={language} />
+              {languages.map((language) => (
+                <LanguageCard key={language.name} language={language} />
               ))}
             </div>
           </div>

@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Felipe Parra Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js, React, TypeScript, and Tailwind CSS. The site presents Felipe Parra's profile, studies, experience, certifications, projects, and contact information in a single-page layout.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Vercel Analytics
+
+## Project Structure
+
+- `app/`: layout, page entry, global styles, and SEO helpers.
+- `components/`: page sections such as hero, about, experience, and contact.
+- `elements/`: reusable UI building blocks.
+- `data/`: portfolio content and metadata.
+- `interfaces/`: shared TypeScript types.
+- `public/`: images, CV, and certification PDFs.
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Quality Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-## Learn More
+Run all checks:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run check
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Content Editing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Most portfolio content lives in `data/`.
 
-## Deploy on Vercel
+- `data/hero.data.ts`: hero texts and rotating greetings.
+- `data/about.data.ts`: about section and personal info.
+- `data/experience.data.ts`: work experience.
+- `data/studies.data.ts`: education timeline.
+- `data/skills.data.ts`: skills and proficiency levels.
+- `data/certifications.data.ts` and `data/awsCertifications.data.ts`: certifications.
+- `data/projects.data.ts`: portfolio projects.
+- `data/contact.data.ts` and `data/social.data.ts`: contact details and social links.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## SEO Configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Set `NEXT_PUBLIC_SITE_URL` to the production URL so canonical metadata, sitemap, robots, and structured data use the correct domain.
+
+Example:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+```
+
+## Git Workflow
+
+Recommended branch flow:
+
+1. Keep `main` deployable.
+2. Make changes in `develop`.
+3. Validate with `npm run check`.
+4. Merge `develop` into `main` when ready.
+5. Push `main` to trigger deployment.
+
+## Deployment
+
+The project is ready for Vercel deployment. Production behavior depends on the content in `data/` and the `NEXT_PUBLIC_SITE_URL` environment variable.

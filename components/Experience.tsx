@@ -1,5 +1,3 @@
-"use client"
-
 import { experiences } from '@/data'
 import { SectionTitle } from '@/elements'
 import { Briefcase, ExternalLink } from "lucide-react"
@@ -11,9 +9,9 @@ export function Experience() {
         <SectionTitle preText="Work" highlightText="Experience" />
 
         <div className="space-y-6">
-          {experiences.map((exp, index) => (
+          {experiences.map((exp) => (
             <div
-              key={index}
+              key={`${exp.company}-${exp.role}`}
               className="group bg-card p-6 md:p-8 rounded-xl border border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
@@ -25,10 +23,19 @@ export function Experience() {
                     <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                       {exp.role}
                     </h3>
-                    <p className="text-primary font-medium flex items-center gap-2">
-                      {exp.company}
-                      <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </p>
+                    {exp.companyUrl ? (
+                      <a
+                        href={exp.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary font-medium inline-flex items-center gap-2 hover:underline"
+                      >
+                        {exp.company}
+                        <ExternalLink className="w-4 h-4 opacity-80" />
+                      </a>
+                    ) : (
+                      <p className="text-primary font-medium">{exp.company}</p>
+                    )}
                   </div>
                 </div>
                 <span className="text-sm text-muted-foreground bg-secondary px-4 py-2 rounded-full">
@@ -37,9 +44,9 @@ export function Experience() {
               </div>
               <p className="text-muted-foreground mb-4 leading-relaxed">{exp.description}</p>
               <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech, techIndex) => (
+                {exp.technologies.map((tech) => (
                   <span
-                    key={techIndex}
+                    key={tech}
                     className="px-3 py-1 text-sm bg-primary/10 text-primary rounded-full border border-primary/20"
                   >
                     {tech}

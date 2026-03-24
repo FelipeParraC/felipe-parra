@@ -1,5 +1,3 @@
-"use client"
-
 import type { Language } from "@/interfaces/types"
 
 interface LanguageCardProps {

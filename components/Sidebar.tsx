@@ -56,37 +56,54 @@ export function Sidebar() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
 
-  const handleNavClick = (id: string) => {
-    setIsOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
+  const handleNavClick = () => {
+    setIsOpen(false)
+  }
 
   useEffect(() => {
     const sections = navItems
       .map((item) => document.getElementById(item.id))
-      .filter(Boolean) as HTMLElement[];
+      .filter(Boolean) as HTMLElement[]
 
-    if (sections.length === 0) return;
+    if (sections.length === 0) return
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            setActiveSection(entry.target.id)
           }
-        });
+        })
       },
       {
         root: null,
         rootMargin: "-40% 0px -50% 0px",
         threshold: 0,
       }
-    );
+    )
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => observer.observe(section))
 
-    return () => observer.disconnect();
-  }, []);
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false)
+      }
+    }
+
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", handleEscape)
+
+    return () => {
+      document.body.style.overflow = ""
+      window.removeEventListener("keydown", handleEscape)
+    }
+  }, [isOpen])
 
   return (
     <>
@@ -95,20 +112,25 @@ export function Sidebar() {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-4 left-4 z-50 p-3 bg-card rounded-lg lg:hidden hover:bg-secondary transition-colors"
         aria-label="Toggle menu"
+        aria-expanded={isOpen}
+        aria-controls="site-sidebar"
       >
         {isOpen ? <X className="w-6 h-6 text-foreground" /> : <Menu className="w-6 h-6 text-foreground" />}
       </button>
 
       {/* Overlay */}
       {isOpen && (
-        <div
+        <button
+          type="button"
           className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 lg:hidden"
           onClick={() => setIsOpen(false)}
+          aria-label="Close navigation menu"
         />
       )}
 
       {/* Sidebar */}
       <aside
+        id="site-sidebar"
         className={cn(
           "fixed left-0 top-0 h-full w-72 bg-sidebar border-r border-sidebar-border z-50 flex flex-col transition-transform duration-300 lg:translate-x-0",
           isOpen ? "translate-x-0" : "-translate-x-full",
@@ -128,12 +150,14 @@ export function Sidebar() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 p-4 overflow-y-auto">
+        <nav className="flex-1 p-4 overflow-y-auto" aria-label="Primary">
           <ul className="space-y-1">
             {navItems.map((item) => (
               <li key={item.id}>
-                <button
-                  onClick={() => handleNavClick(item.id)}
+                <a
+                  href={`#${item.id}`}
+                  onClick={handleNavClick}
+                  aria-current={activeSection === item.id ? "page" : undefined}
                   className={cn(
                     "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all duration-200",
                     activeSection === item.id
@@ -143,7 +167,7 @@ export function Sidebar() {
                 >
                   {iconMap[item.icon]}
                   <span className="font-medium">{item.label}</span>
-                </button>
+                </a>
               </li>
             ))}
           </ul>

@@ -1,5 +1,3 @@
-'use client'
-
 import { awsCertifications } from '@/data'
 import { SectionTitle } from '@/elements'
 import { AwsCertificationBadge } from '@/elements/AwsCertificationBadge'

@@ -12,6 +12,6 @@ export const navItems: NavItem[] = [
 ]
 
 export const profileName = "Felipe Parra"
-export const profileRole = "Mathematician"
+export const profileRole = "Mathematician and Data Analyst Engineer"
 export const profileImage = "/images/navigation/profile.jpg"
 export const footerText = "© 2026 Felipe Parra"

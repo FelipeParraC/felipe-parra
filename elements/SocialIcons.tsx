@@ -19,12 +19,12 @@ export function SocialIcons({ links, variant = "default" }: SocialIconsProps) {
 
   return (
     <div className="flex gap-3">
-      {links.map((link, index) => (
+      {links.map((link) => (
         <a
-          key={index}
+          key={`${link.label}-${link.href}`}
           href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={link.href.startsWith("http") ? "_blank" : undefined}
+          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
           className={baseClasses}
           aria-label={link.label}
         >
