@@ -110,9 +110,19 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at top, rgba(15, 116, 197, 0.14), transparent 24%),
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: auto, 36px 36px, 36px 36px;
+    background-position: center top, center center, center center;
   }
   html {
     scroll-behavior: smooth;
+  }
+  ::selection {
+    background: rgba(15, 116, 197, 0.35);
+    color: var(--foreground);
   }
 }
 

@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     title: "Digital Wallet App",
     description:
-      "A secure and user-friendly digital wallet application that allows users to manage their finances.",
+      "A responsive wallet experience for tracking balances, organizing transactions, and presenting financial information through a clean and accessible interface.",
     image: "/images/projects/wallet-pipe-project.png",
     technologies: ["Next.js", "TypeScript", "PostgreSQL"],
     liveUrl: "https://wallet-pipe.vercel.app/",

@@ -11,7 +11,7 @@ export const personalInfo: PersonalInfo = {
 export const aboutImage = "/images/about/about.jpg"
 
 export const aboutDescription = [
-  "I am a mathematician with a strong interest in software engineering, cloud technologies, and applied problem solving. I enjoy turning abstract ideas into practical products with clear interfaces and maintainable code.",
-  "My background combines analytical thinking with hands-on development in Python, TypeScript, and AWS. I care about building solutions that are useful, understandable, and ready to evolve as requirements change.",
+  "I am a mathematician with a strong interest in software engineering, cloud technologies, and applied problem solving. I enjoy taking complex ideas, structuring them clearly, and turning them into practical digital products.",
+  "My background combines analytical thinking with hands-on work in Python, TypeScript, and AWS. I care about solutions that are easy to understand, reliable to maintain, and genuinely useful for the people who depend on them.",
 ]
 

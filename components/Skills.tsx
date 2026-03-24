@@ -14,9 +14,13 @@ export function Skills() {
           {skillCategories.map((category) => (
             <div
               key={category.title}
-              className="bg-card p-6 rounded-xl border border-border hover:border-primary transition-all duration-300"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-card/90 p-6 hover:-translate-y-1 hover:border-primary transition-all duration-300 hover:shadow-xl hover:shadow-primary/10"
             >
-              <h3 className="text-xl font-bold text-foreground mb-6 text-center">{category.title}</h3>
+              <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
+              <div className="mb-6 text-center">
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary/70">Core Stack</p>
+                <h3 className="text-xl font-bold text-foreground">{category.title}</h3>
+              </div>
               <div className="space-y-5">
                 {category.skills.map((skill) => (
                   <ProgressBar key={skill.name} name={skill.name} level={skill.level} />
@@ -25,11 +29,15 @@ export function Skills() {
             </div>
           ))}
 
-          <div className="bg-card p-6 rounded-xl border border-border hover:border-primary transition-all duration-300">
-            <h3 className="text-xl font-bold text-foreground mb-6 text-center flex items-center justify-center gap-2">
-              <Globe className="w-5 h-5 text-primary" />
-              Languages
-            </h3>
+          <div className="group relative overflow-hidden rounded-2xl border border-border bg-card/90 p-6 hover:-translate-y-1 hover:border-primary transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+            <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
+            <div className="mb-6 text-center">
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-primary/70">Communication</p>
+              <h3 className="text-xl font-bold text-foreground mb-0 flex items-center justify-center gap-2">
+                <Globe className="w-5 h-5 text-primary" />
+                Languages
+              </h3>
+            </div>
             <div className="space-y-3">
               {languages.map((language) => (
                 <LanguageCard key={language.name} language={language} />

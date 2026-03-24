@@ -11,10 +11,11 @@ interface ProjectCardProps {
 export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
   return (
     <div
-      className={`group bg-card rounded-xl border border-border overflow-hidden hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 flex flex-col lg:flex-row ${
+      className={`group relative overflow-hidden rounded-2xl border border-border bg-card hover:-translate-y-1 hover:border-primary transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 flex flex-col lg:flex-row ${
         reverse ? "lg:flex-row-reverse" : ""
       }`}
     >
+      <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
       {/* Image */}
       <div className="relative lg:w-1/2 h-64 lg:h-auto overflow-hidden">
         <Image
@@ -23,11 +24,12 @@ export function ProjectCard({ project, reverse = false }: ProjectCardProps) {
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors duration-300" />
+        <div className="absolute inset-0 bg-primary/15 group-hover:bg-transparent transition-colors duration-300" />
       </div>
 
       {/* Content */}
       <div className="lg:w-1/2 p-6 lg:p-8 flex flex-col justify-center">
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">Featured Project</p>
         <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">
           {project.title}
         </h3>

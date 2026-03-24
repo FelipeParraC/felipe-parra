@@ -28,16 +28,19 @@ export function Studies() {
 
                 {/* Content */}
                 <div className={`ml-16 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pl-8" : "md:pr-8 md:text-right"}`}>
-                  <div className="bg-card p-6 rounded-xl border border-border hover:border-primary transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
-                    <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? "" : "md:justify-end"}`}>
-                      <div className="p-2 bg-primary/10 rounded-lg">
+                  <div className="group relative overflow-hidden rounded-2xl border border-border bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10">
+                    <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
+                    <div className={`mb-4 flex items-center gap-3 ${index % 2 === 0 ? "" : "md:justify-end"}`}>
+                      <div className="rounded-lg bg-primary/10 p-2.5">
                         <GraduationCap className="w-5 h-5 text-primary" />
                       </div>
-                      <span className="text-sm text-primary font-medium">{item.year}</span>
+                      <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-primary">
+                        {item.year}
+                      </span>
                     </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">{item.degree}</h3>
-                    <p className="text-primary font-medium mb-2">{item.institution}</p>
-                    {item.description && <p className="text-muted-foreground text-sm">{item.description}</p>}
+                    <h3 className="mb-2 text-xl font-bold text-foreground">{item.degree}</h3>
+                    <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-primary/80">{item.institution}</p>
+                    {item.description && <p className="text-sm leading-7 text-muted-foreground">{item.description}</p>}
                   </div>
                 </div>
 
