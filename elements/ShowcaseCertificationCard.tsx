@@ -13,6 +13,7 @@ interface ShowcaseCertificationCardProps {
   certification: ShowcaseCertificationItem
   theme?: "platzi" | "default"
   imagePosition?: string
+  compactMobileHeight?: boolean
 }
 
 const themeClasses = {
@@ -42,6 +43,7 @@ export function ShowcaseCertificationCard({
   certification,
   theme = "default",
   imagePosition = "50% 50%",
+  compactMobileHeight = false,
 }: ShowcaseCertificationCardProps) {
   const palette = themeClasses[theme]
 
@@ -50,7 +52,7 @@ export function ShowcaseCertificationCard({
       href={certification.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative block min-h-[22.75rem] overflow-visible rounded-[28px] border border-border bg-card/95 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${palette.hoverBorder} sm:min-h-[25.5rem]`}
+      className={`group relative block min-h-[22.75rem] ${compactMobileHeight ? "max-sm:min-h-[20.75rem]" : ""} overflow-visible rounded-[28px] border border-border bg-card/95 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${palette.hoverBorder} sm:min-h-[25.5rem]`}
     >
       <div className="absolute inset-0 overflow-hidden rounded-[28px] bg-linear-to-br from-[#08161a] via-[#0b1826] to-[#071018]">
         <div className={`absolute inset-x-0 top-0 hidden h-24 bg-linear-to-r ${palette.topWash} blur-2xl sm:block`} />
@@ -65,7 +67,7 @@ export function ShowcaseCertificationCard({
             fill
             sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) calc((100vw - 5rem) / 2), calc((100vw - 8rem) / 3)"
             className="object-cover object-center drop-shadow-[0_18px_30px_rgba(0,0,0,0.35)] transition-transform duration-500 md:object-contain md:p-3"
-            style={{ objectPosition: imagePosition }}
+            style={{ objectPosition: compactMobileHeight ? "50% 0%" : imagePosition }}
           />
           </div>
         </div>
