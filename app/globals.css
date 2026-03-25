@@ -271,15 +271,6 @@
   pointer-events: none;
 }
 
-.surface-platzi::after {
-  content: "";
-  position: absolute;
-  inset: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 30px;
-  pointer-events: none;
-}
-
 .surface-platzi > * {
   position: relative;
   z-index: 1;
@@ -345,6 +336,15 @@
   border-radius: 999px;
 }
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -383,8 +383,4 @@
     overflow: visible;
   }
 
-  .surface-platzi::after {
-    inset: 20px;
-    border-radius: 28px;
-  }
 }
