@@ -280,3 +280,11 @@
     box-shadow: none;
   }
 }
+
+@media (max-width: 640px) {
+  body {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+}
