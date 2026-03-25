@@ -45,10 +45,10 @@ export default function Home() {
         <Studies />
         <Experience />
         <Skills />
-        <section id="certifications">
+        <div id="certifications">
           <AwsCertifications />
           <Certifications />
-        </section>
+        </div>
         <Portfolio />
         <Contact />
       </main>

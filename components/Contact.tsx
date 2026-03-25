@@ -72,6 +72,17 @@ export function Contact() {
     return !Object.values(nextErrors).some(Boolean)
   }
 
+  function clearFieldError(field: "name" | "email" | "message") {
+    setErrors((current) => {
+      if (!current[field]) return current
+
+      return {
+        ...current,
+        [field]: "",
+      }
+    })
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
@@ -104,26 +115,40 @@ ${message}
       whatsappMessage
     )}`
 
-    setStatus({
-      type: "success",
-      message: "Opening WhatsApp with your message.",
-    })
+    const openedWindow = window.open(url, "_blank", "noopener,noreferrer")
 
-    window.open(url, "_blank", "noopener,noreferrer")
+    if (openedWindow) {
+      setStatus({
+        type: "success",
+        message: "WhatsApp opened with your message ready to send.",
+      })
+      e.currentTarget.reset()
+      setErrors({
+        name: "",
+        email: "",
+        message: "",
+      })
+      return
+    }
+
+    setStatus({
+      type: "error",
+      message: "WhatsApp could not be opened. Please allow pop-ups or contact me by email.",
+    })
   }
 
   return (
     <section id="contact" className="py-20 px-4 bg-secondary/80">
       <div className="max-w-6xl mx-auto">
-        <SectionTitle preText="Get In" highlightText="Touch" />
+        <SectionTitle preText="Contact" highlightText="Me" />
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3 className="text-2xl font-bold text-foreground mb-6">Let&apos;s talk about everything!</h3>
+            <h3 className="text-2xl font-bold text-foreground mb-6">Let&apos;s connect</h3>
             <p className="text-muted-foreground mb-8 leading-relaxed text-justify">
-              Don&apos;t like forms? Send me an email or reach out through any of my social channels. I&apos;m always
-              open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+              Feel free to reach out by email, phone, or social media. I&apos;m always open to discussing new projects,
+              collaborations, and professional opportunities.
             </p>
 
             <div className="space-y-4 mb-8">
@@ -133,14 +158,17 @@ ${message}
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold text-foreground mb-4">Follow Me</h4>
+              <h4 className="text-lg font-semibold text-foreground mb-4">Find me online</h4>
               <SocialIcons links={socialLinksWithIcons} />
             </div>
           </div>
 
           {/* Contact Form */}
           <div className="bg-card p-6 md:p-8 rounded-xl border border-border">
-            <h3 className="text-xl font-bold text-foreground mb-6">Send me a message</h3>
+            <h3 className="text-xl font-bold text-foreground mb-2">Send a message via WhatsApp</h3>
+            <p className="mb-6 text-sm leading-6 text-muted-foreground">
+              Fill out the form and a WhatsApp message with your details will open automatically.
+            </p>
             {status.type !== "idle" && (
               <div
                 className={`mb-5 flex items-start gap-3 rounded-lg border px-4 py-3 text-sm ${
@@ -173,6 +201,7 @@ ${message}
                     className="bg-secondary border-border focus:border-primary"
                     aria-invalid={Boolean(errors.name)}
                     aria-describedby={errors.name ? "name-error" : undefined}
+                    onChange={() => clearFieldError("name")}
                   />
                   {errors.name && <p id="name-error" className="mt-2 text-sm text-destructive">{errors.name}</p>}
                 </div>
@@ -189,6 +218,7 @@ ${message}
                     className="bg-secondary border-border focus:border-primary"
                     aria-invalid={Boolean(errors.email)}
                     aria-describedby={errors.email ? "email-error" : undefined}
+                    onChange={() => clearFieldError("email")}
                   />
                   {errors.email && <p id="email-error" className="mt-2 text-sm text-destructive">{errors.email}</p>}
                 </div>
@@ -206,12 +236,13 @@ ${message}
                   className="bg-secondary border-border focus:border-primary resize-none h-60"
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={errors.message ? "message-error" : undefined}
+                  onChange={() => clearFieldError("message")}
                 />
                 {errors.message && <p id="message-error" className="mt-2 text-sm text-destructive">{errors.message}</p>}
               </div>
               <Button type="submit" className="w-full" size="lg">
                 <Send className="w-4 h-4 mr-2" />
-                Send Message
+                Open WhatsApp
               </Button>
             </form>
           </div>

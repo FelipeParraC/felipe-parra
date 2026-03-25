@@ -28,7 +28,7 @@ export function Studies() {
 
                 {/* Content */}
                 <div className={`ml-16 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pl-8" : "md:pr-8 md:text-right"}`}>
-                  <div className="group relative overflow-hidden rounded-2xl border border-border bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10">
+                  <div className="group relative animate-reveal overflow-hidden rounded-2xl border border-border bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10">
                     <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
                     <div className={`mb-4 flex items-center gap-3 ${index % 2 === 0 ? "" : "md:justify-end"}`}>
                       <div className="rounded-lg bg-primary/10 p-2.5">

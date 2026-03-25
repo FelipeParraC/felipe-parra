@@ -42,7 +42,7 @@ export interface Certification {
   institution: string
   date: string
   image: string
-  url?: string
+  url: string
 }
 
 export type AwsCertificationLevel =

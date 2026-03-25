@@ -13,18 +13,23 @@ export function FadingText({ texts, interval = 3000, className = "" }: FadingTex
   const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
+    let fadeTimeout: NodeJS.Timeout | undefined
+
     const timer = setInterval(() => {
       // Fade out
       setIsVisible(false)
 
       // After fade out, change text and fade in
-      setTimeout(() => {
+      fadeTimeout = setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % texts.length)
         setIsVisible(true)
       }, 500) // Half second for fade out
     }, interval)
 
-    return () => clearInterval(timer)
+    return () => {
+      clearInterval(timer)
+      if (fadeTimeout) clearTimeout(fadeTimeout)
+    }
   }, [texts.length, interval])
 
   return (

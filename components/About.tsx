@@ -19,6 +19,7 @@ export function About() {
                 src={ aboutImage }
                 alt="Felipe Parra"
                 fill
+                sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 448px, 448px"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 group-hover:bg-transparent transition-colors duration-300" />
