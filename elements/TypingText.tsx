@@ -16,25 +16,29 @@ export function TypingText({ texts, typingSpeed = 100, delayBetween = 2000 }: Ty
   useEffect(() => {
     const text = texts[currentIndex]
     let index = 0
-    let timeout: NodeJS.Timeout
+    let intervalId: NodeJS.Timeout | undefined
+    let delayTimeoutId: NodeJS.Timeout | undefined
 
     if (isTyping) {
-      timeout = setInterval(() => {
+      intervalId = setInterval(() => {
         if (index <= text.length) {
           setDisplayText(text.slice(0, index))
           index++
         } else {
           setIsTyping(false)
-          setTimeout(() => {
+          delayTimeoutId = setTimeout(() => {
             setIsTyping(true)
             setCurrentIndex((prev) => (prev + 1) % texts.length)
           }, delayBetween)
-          clearInterval(timeout)
+          clearInterval(intervalId)
         }
       }, typingSpeed)
     }
 
-    return () => clearInterval(timeout)
+    return () => {
+      if (intervalId) clearInterval(intervalId)
+      if (delayTimeoutId) clearTimeout(delayTimeoutId)
+    }
   }, [currentIndex, isTyping, texts, typingSpeed, delayBetween])
 
   return (

@@ -12,7 +12,7 @@ export function Experience() {
           {experiences.map((exp) => (
             <div
               key={`${exp.company}-${exp.role}`}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10 md:p-8"
+              className="group relative animate-reveal overflow-hidden rounded-2xl border border-border bg-card/90 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10 md:p-8"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">

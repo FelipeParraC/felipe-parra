@@ -12,7 +12,7 @@ export function CertificationCard({ certification }: CertificationCardProps) {
       href={certification.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex h-full flex-col overflow-hidden rounded-[28px] border border-border bg-card/95 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10"
+      className="group shine-on-hover relative flex h-full flex-col overflow-hidden rounded-[28px] border border-border bg-card/95 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl hover:shadow-primary/10"
     >
       <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-primary via-[#0b4f84] to-[#07253d]" />
       <div className="relative overflow-hidden bg-linear-to-br from-[#08131f] via-[#0b1826] to-[#071018] px-4 pb-2 pt-5">
@@ -23,6 +23,7 @@ export function CertificationCard({ certification }: CertificationCardProps) {
             src={certification.image || "/placeholder.svg"}
             alt={certification.name}
             fill
+            sizes="(max-width: 640px) calc(100vw - 3rem), (max-width: 1024px) calc((100vw - 5rem) / 2), calc((100vw - 8rem) / 3)"
             className="object-contain p-1 drop-shadow-[0_18px_30px_rgba(0,0,0,0.4)] transition-transform duration-500 group-hover:scale-[1.07] group-hover:-rotate-1"
           />
         </div>
@@ -31,7 +32,7 @@ export function CertificationCard({ certification }: CertificationCardProps) {
         <div className="mb-4 flex items-center justify-between gap-3">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
             <Award className="h-3.5 w-3.5" />
-            Certificate
+            Credential
           </span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
             {certification.date}
