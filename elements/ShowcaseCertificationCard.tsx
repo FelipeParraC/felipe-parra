@@ -52,7 +52,7 @@ export function ShowcaseCertificationCard({
       href={certification.url}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative block min-h-[22.75rem] ${compactMobileHeight ? "max-sm:min-h-[20.75rem]" : ""} overflow-visible rounded-[28px] border border-border bg-card/95 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${palette.hoverBorder} sm:min-h-[25.5rem]`}
+      className={`group relative z-30 block min-h-[22.75rem] ${compactMobileHeight ? "max-sm:min-h-72" : ""} overflow-visible rounded-[28px] border border-border bg-card/95 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${palette.hoverBorder} sm:z-auto sm:min-h-[25.5rem]`}
     >
       <div className="absolute inset-0 overflow-hidden rounded-[28px] bg-linear-to-br from-[#08161a] via-[#0b1826] to-[#071018]">
         <div className={`absolute inset-x-0 top-0 hidden h-24 bg-linear-to-r ${palette.topWash} blur-2xl sm:block`} />
