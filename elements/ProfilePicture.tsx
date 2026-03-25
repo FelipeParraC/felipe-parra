@@ -22,7 +22,7 @@ export function ProfilePicture({ src, alt, size = "md" }: ProfilePictureProps) {
   return (
     <div className={`relative ${sizeClasses[size]} mx-auto rounded-full overflow-hidden ring-4 ring-primary/30 shadow-2xl shadow-primary/20`}>
       <div className="absolute inset-0 bg-linear-to-br from-primary/20 via-transparent to-transparent z-10 pointer-events-none" />
-      <Image src={src} alt={alt} fill sizes={imageSizes[size]} className="object-cover" />
+      <Image src={src} alt={alt} fill sizes={imageSizes[size]} className="object-cover" priority />
     </div>
   )
 }

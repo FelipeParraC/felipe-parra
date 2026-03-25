@@ -6,5 +6,5 @@ interface CertificationCardProps {
 }
 
 export function CertificationCard({ certification }: CertificationCardProps) {
-  return <ShowcaseCertificationCard certification={certification} theme="default" />
+  return <ShowcaseCertificationCard certification={certification} theme="default" compactMobileHeight />
 }
