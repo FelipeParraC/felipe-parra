@@ -5,46 +5,51 @@ import { useEffect, useState } from "react"
 interface TypingTextProps {
   texts: string[]
   typingSpeed?: number
+  deletingSpeed?: number
   delayBetween?: number
 }
 
-export function TypingText({ texts, typingSpeed = 100, delayBetween = 2000 }: TypingTextProps) {
+export function TypingText({
+  texts,
+  typingSpeed = 90,
+  deletingSpeed = 45,
+  delayBetween = 1400,
+}: TypingTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [displayText, setDisplayText] = useState("")
-  const [isTyping, setIsTyping] = useState(true)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   useEffect(() => {
-    const text = texts[currentIndex]
-    let index = 0
-    let intervalId: NodeJS.Timeout | undefined
-    let delayTimeoutId: NodeJS.Timeout | undefined
+    if (texts.length === 0) return
 
-    if (isTyping) {
-      intervalId = setInterval(() => {
-        if (index <= text.length) {
-          setDisplayText(text.slice(0, index))
-          index++
-        } else {
-          setIsTyping(false)
-          delayTimeoutId = setTimeout(() => {
-            setIsTyping(true)
-            setCurrentIndex((prev) => (prev + 1) % texts.length)
-          }, delayBetween)
-          clearInterval(intervalId)
-        }
-      }, typingSpeed)
-    }
+    const currentText = texts[currentIndex]
+    const timeoutId = setTimeout(() => {
+      if (!isDeleting && displayText === currentText) {
+        setIsDeleting(true)
+        return
+      }
 
-    return () => {
-      if (intervalId) clearInterval(intervalId)
-      if (delayTimeoutId) clearTimeout(delayTimeoutId)
-    }
-  }, [currentIndex, isTyping, texts, typingSpeed, delayBetween])
+      if (isDeleting && displayText === "") {
+        setIsDeleting(false)
+        setCurrentIndex((prev) => (prev + 1) % texts.length)
+        return
+      }
+
+      if (isDeleting) {
+        setDisplayText(currentText.slice(0, displayText.length - 1))
+        return
+      }
+
+      setDisplayText(currentText.slice(0, displayText.length + 1))
+    }, !isDeleting && displayText === currentText ? delayBetween : isDeleting ? deletingSpeed : typingSpeed)
+
+    return () => clearTimeout(timeoutId)
+  }, [currentIndex, delayBetween, deletingSpeed, displayText, isDeleting, texts, typingSpeed])
 
   return (
     <span className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-light">
       {displayText}
-      <span className="inline-block w-0.5 h-6 sm:h-8 bg-primary ml-1 animate-pulse" />
+      <span className="ml-1 inline-block h-6 w-0.5 animate-pulse bg-primary sm:h-8" />
     </span>
   )
 }
