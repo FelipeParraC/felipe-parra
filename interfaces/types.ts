@@ -58,6 +58,14 @@ export interface AwsCertification {
   level: AwsCertificationLevel
 }
 
+export interface PlatziCertification {
+  id: string
+  name: string
+  date: string
+  image: string
+  url: string
+}
+
 export interface Project {
   title: string
   description: string

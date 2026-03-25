@@ -160,17 +160,41 @@
 
 @keyframes float-slow {
   0%, 100% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(0, -10px, 0); }
+  50% { transform: translate3d(0, -6px, 0); }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.08); }
+  0%, 100% { opacity: 0.22; transform: scale(1); }
+  50% { opacity: 0.36; transform: scale(1.02); }
 }
 
 @keyframes shimmer {
   from { transform: translateX(-140%) skewX(-18deg); }
   to { transform: translateX(220%) skewX(-18deg); }
+}
+
+@keyframes slide-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.996);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes active-signal {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 rgba(152, 255, 113, 0.18),
+      0 24px 55px rgba(0, 0, 0, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(152, 255, 113, 0.06),
+      0 28px 68px rgba(152, 255, 113, 0.16);
+  }
 }
 
 .animate-fade-in-up {
@@ -186,11 +210,19 @@
 }
 
 .animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
+  animation: float-slow 10s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 4s ease-in-out infinite;
+  animation: pulse-glow 7s ease-in-out infinite;
+}
+
+.animate-slide-fade-up {
+  animation: slide-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-active-signal {
+  animation: active-signal 2.6s ease-in-out infinite;
 }
 
 .surface-premium {
@@ -214,6 +246,43 @@
     radial-gradient(circle at top, rgba(15, 116, 197, 0.18), transparent 40%),
     radial-gradient(circle at bottom right, rgba(0, 149, 156, 0.12), transparent 32%);
   pointer-events: none;
+}
+
+.surface-platzi {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(67, 208, 120, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 24%),
+    linear-gradient(145deg, rgba(7, 14, 22, 0.97), rgba(5, 12, 18, 0.94));
+  box-shadow:
+    0 24px 56px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+}
+
+.surface-platzi::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(152, 255, 113, 0.1), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 116, 197, 0.12), transparent 34%);
+  pointer-events: none;
+}
+
+.surface-platzi::after {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+.surface-platzi > * {
+  position: relative;
+  z-index: 1;
 }
 
 .shine-on-hover {
@@ -245,8 +314,8 @@
 }
 
 .hover-lift-glow:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 28px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(15, 116, 197, 0.16);
+  transform: translateY(-3px);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(15, 116, 197, 0.12);
 }
 
 .animation-delay-100 { animation-delay: 0.1s; }
@@ -255,6 +324,26 @@
 .animation-delay-400 { animation-delay: 0.4s; }
 .animation-delay-500 { animation-delay: 0.5s; }
 .animation-delay-600 { animation-delay: 0.6s; }
+
+.subtle-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(152, 255, 113, 0.28) rgba(255, 255, 255, 0.05);
+}
+
+.subtle-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.subtle-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+}
+
+.subtle-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(152, 255, 113, 0.45), rgba(15, 116, 197, 0.42));
+  border-radius: 999px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -265,7 +354,9 @@
   .animate-fade-in,
   .animate-reveal,
   .animate-float-slow,
-  .animate-pulse-glow {
+  .animate-pulse-glow,
+  .animate-slide-fade-up,
+  .animate-active-signal {
     animation: none !important;
   }
 
@@ -286,5 +377,14 @@
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
+  }
+
+  .surface-platzi {
+    overflow: visible;
+  }
+
+  .surface-platzi::after {
+    inset: 20px;
+    border-radius: 28px;
   }
 }

@@ -18,7 +18,7 @@ export function CertificationCard({ certification }: CertificationCardProps) {
       <div className="relative overflow-hidden bg-linear-to-br from-[#08131f] via-[#0b1826] to-[#071018] px-4 pb-2 pt-5">
         <div className="absolute -left-10 top-4 h-28 w-28 rounded-full bg-primary/12 blur-3xl" />
         <div className="absolute -right-8 bottom-0 h-24 w-24 rounded-full bg-primary/10 blur-3xl" />
-        <div className="relative h-48">
+        <div className="relative h-48 overflow-hidden rounded-[22px]">
           <Image
             src={certification.image || "/placeholder.svg"}
             alt={certification.name}

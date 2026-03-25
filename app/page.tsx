@@ -4,6 +4,7 @@ import { Certifications } from '@/components/Certifications';
 import { Contact } from '@/components/Contact';
 import { Experience } from '@/components/Experience';
 import { Hero } from '@/components/Hero';
+import { PlatziCertifications } from '@/components/PlatziCertifications';
 import { Portfolio } from '@/components/Portfolio';
 import { Sidebar } from '@/components/Sidebar';
 import { Skills } from '@/components/Skills';
@@ -47,6 +48,7 @@ export default function Home() {
         <Skills />
         <div id="certifications">
           <AwsCertifications />
+          <PlatziCertifications />
           <Certifications />
         </div>
         <Portfolio />
